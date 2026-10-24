@@ -204,3 +204,9 @@ button,select,input,textarea{font:inherit}
   input::placeholder,textarea::placeholder{color:transparent}
   .ph:not(.loaded)::after{content:""}
 }
+
+/* barre compacte sur les petites fenêtres */
+.bar button{white-space:nowrap}
+@media (max-width:1100px){.brand{display:none}.bar{gap:10px}}
+@media (max-width:900px){#datejump,#photosbtn{display:none}.bar select{min-width:120px}.sync{display:none}}
+@media (max-width:720px){#today{display:none}.bar button.txt,.bar .gold{padding:0 10px}}
