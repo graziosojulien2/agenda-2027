@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Agenda 2027 — Gratzob</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600&family=Yellowtail&display=block" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+<header class="bar" id="bar">
+  <div class="brand">Agenda <b>2027</b></div>
+  <nav class="nav">
+    <button class="ico" id="prev" title="Page précédente (←)">‹</button>
+    <select id="jump" title="Aller à…"></select>
+    <input type="date" id="datejump" min="2027-01-01" max="2027-12-31" title="Aller à une date">
+    <button class="ico" id="next" title="Page suivante (→)">›</button>
+    <button class="txt" id="today">Aujourd'hui</button>
+  </nav>
+  <div class="actions">
+    <span class="sync" id="sync"></span>
+    <button class="txt" id="gbtn">Se connecter à Google</button>
+    <button class="txt" id="photosbtn" title="Importer les photos dans ton Google Drive">Photos</button>
+    <button class="gold" id="printbtn">PDF de cette page</button>
+  </div>
+</header>
+<main id="stage"><div id="page" class="page"></div></main>
+
+<div class="modal" id="evmodal" hidden>
+  <form class="sheet" id="evform" autocomplete="off">
+    <h2 id="evtitle">Nouveau rendez-vous</h2>
+    <p class="evdate" id="evdate"></p>
+    <label>Titre<input name="title" required maxlength="200"></label>
+    <label class="chk"><input type="checkbox" name="allday"> Journée entière</label>
+    <div class="row" id="evtimes">
+      <label>Début<input type="time" name="start" step="300"></label>
+      <label>Fin<input type="time" name="end" step="300"></label>
+    </div>
+    <label>Détails<textarea name="desc" rows="3"></textarea></label>
+    <div class="btns">
+      <button type="button" class="danger" id="evdel">Supprimer</button>
+      <a id="evlink" target="_blank" rel="noopener">Ouvrir dans Google Agenda</a>
+      <span class="sp"></span>
+      <button type="button" class="txt" id="evcancel">Annuler</button>
+      <button type="submit" class="gold" id="evsave">Enregistrer</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal" id="cfgmodal" hidden>
+  <form class="sheet" id="cfgform">
+    <h2>Connexion à Google</h2>
+    <p>Colle ici l'<b>identifiant client</b> créé dans la console Google Cloud (il se termine par <code>.apps.googleusercontent.com</code>). Il est enregistré dans ce navigateur.</p>
+    <label>Identifiant client<input name="cid" required placeholder="1234…apps.googleusercontent.com"></label>
+    <div class="btns"><span class="sp"></span><button type="button" class="txt" id="cfgcancel">Annuler</button><button class="gold">Valider</button></div>
+  </form>
+</div>
+
+<div class="modal" id="phmodal" hidden>
+  <div class="sheet">
+    <h2>Photos de l'agenda</h2>
+    <p>Les photos sont rangées dans ton Google Drive (dossier <b>Agenda 2027</b>). Elles ne sont jamais publiées sur le site : l'appli ne les affiche qu'une fois connectée à ton compte.</p>
+    <p>Sélectionne tous les fichiers du pack de photos d'un coup (couverture.jpg, mois-01.jpg… mois-12.jpg, jour-035.jpg…, dos.jpg). Un fichier qui porte le même nom remplace l'ancien.</p>
+    <div id="phlist" class="phlist"></div>
+    <div class="btns"><span class="sp"></span><button type="button" class="txt" id="phclose">Fermer</button><button type="button" class="gold" id="phpick">Choisir les photos…</button></div>
+    <input type="file" id="phinput" accept="image/*" multiple hidden>
+  </div>
+</div>
+
+<input type="file" id="slotinput" accept="image/*" hidden>
+<div class="toast" id="toast" hidden></div>
+
+<script src="config.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
